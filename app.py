@@ -215,7 +215,7 @@ def create_user_info(login_hello):
 @app.route('/user/<login_hello>')
 def get_user_info(login_hello):
 	with open('./data/' + login_hello + '.json') as json_data:
-		d = json.load(json_data)
+		d = json.load(json_data)		
 	return jsonify(d)
 
 @app.route('/level/<login_hello>')
@@ -237,7 +237,11 @@ def get_user_level(login_hello):
 
 @app.route('/near/<login_hello>')
 def get_near_user(login_hello):	
-	return jsonify(KNN(login_hello, 5))
+	l = []
+	for dev in KNN(login_hello, 5):
+		with open('./data/' + dev + '.json') as json_data:
+			l.append(json.load(json_data))
+	return jsonify(l)
 
 if __name__=='__main__':
     app.run(host='0.0.0.0', debug=True, port=5000)
