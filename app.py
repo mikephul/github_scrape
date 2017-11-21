@@ -18,7 +18,7 @@ import pandas as pd
 import requests
 from scipy import spatial
 
-auth = ('mikephul', 'mike42451')
+auth = ('mikephul', 'password')
 
 def get_follower(followers_url):
     page_num = 0
